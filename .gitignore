@@ -1,0 +1,4 @@
+#Archivos y Carpetas a ser ignorados en futuros commits
+svbvir
+db.sqlite3
+__pycache__
