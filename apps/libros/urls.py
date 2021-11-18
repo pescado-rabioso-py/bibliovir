@@ -12,7 +12,7 @@ urlpatterns = [
 	path('inicio_libro/',InicioLibro.as_view(),name='inicio_libro'),
 	path('crear_libro/',CrearLibro.as_view(),name='crear_libro'),
 	path('listado_libros/',ListadoLibros.as_view(),name='listar_libros'),
-	path('editar_libros/<int:pk>',EditarLibro.as_view(),name='editar_libro'),
+	path('editar_libros/<int:pk>',ActualizarLibro.as_view(),name='editar_libro'),
 	path('eliminar_libros/<int:pk>',EliminarLibro.as_view(),name='eliminar_libro'),
-	path('crear_autor_formset',FormsetAutor.as_view(),name='crear_autor_formset')
+	path('crear_autor_formset',FormsetAutor.as_view(),name='crear_autor_formset'),
 ]

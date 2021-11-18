@@ -6,7 +6,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from django.core.serializers import serialize
 from django.http import HttpResponse,JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django,views.generic import View,TemplateView,ListView,UpdateView,CreateView,DeleteView,DetailView
+from django.views.generic import View,TemplateView,ListView,UpdateView,CreateView,DeleteView,DetailView
 from django.urls import reverse_lazy
 from apps.usuario.mixins import LoginYSuperStaffMixin,ValidarPermisosMixin,LoginMixin
 from apps.usuario.models import Usuario
@@ -108,8 +108,8 @@ class CrearAutor(LoginYSuperStaffMixin,ValidarPermisosMixin,CreateView):
 				response = JsonResponse({'mensaje': mensaje,'error':error})
 				response.status_code = 400
 				return response
-			else:
-				return redirect('libro:inicio_autor')
+		else:
+			return redirect('libro:inicio_autor')
 
 class EliminarAutor(LoginYSuperStaffMixin,ValidarPermisosMixin,DeleteView):
 	model = Autor
@@ -197,8 +197,8 @@ class ActualizarLibro(LoginYSuperStaffMixin,ValidarPermisosMixin,UpdateView):
 				response = JsonResponse({'mensaje':mensaje,'error':error})
 				response.status_code = 400
 				return response
-			else:
-				return redirect('libro:inicio_libro')
+		else:
+			return redirect('libro:inicio_libro')
 
 class EliminarLibro(LoginYSuperStaffMixin,ValidarPermisosMixin,DeleteView):
 	model = Libro
