@@ -43,10 +43,11 @@ class LibroForm(forms.ModelForm):
 
 	def __init__(self, *args, **kwargs):
 		super().__init__(*args, **kwargs)
-		self.fields['autor_id'].queryset = Autor.objects.filter(estado = True)
+		self.fields['autor'].queryset = Autor.objects.filter(estado = True)
+
 
 	class Meta:
-		model: Libro
+		model = Libro
 		fields = ('titulo','autor','fecha_publicacion','descripcion','imagen','cantidad')
 		label = {
 			'titulo':'Titulo del libro',

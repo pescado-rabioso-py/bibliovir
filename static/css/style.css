@@ -10,12 +10,12 @@
 * License URI: http://www.gnu.org/licenses/gpl-2.0.html
 * Tags: html, themplate, Ela Admin
 --------------------------------------------------------- */
-/* 
+/*
 
 
 Googel Fonts  */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
-/* Googel Fonts End  
+/* Googel Fonts End
 
 */
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,700");
@@ -133,11 +133,11 @@ Googel Fonts  */
 .mb-15 {
   margin-bottom: 15px; }
 
-/* 
+/*
 
 
 Googel Fonts  */
-/* Googel Fonts End  
+/* Googel Fonts End
 
 */
 .bg-flat-color-1 {
@@ -500,15 +500,15 @@ canvas {
       text-align: center;
       padding-top: 5px; }
   .messenger-box .msg-box {
-    margin-left: 84px;
-    margin-right: 84px; }
+    margin-left: 84px; }
   .messenger-box .inner-box {
     position: relative;
     border-radius: 10px;
     background-color: #f1f2f7;
     font-size: 14px;
     color: #9aa0a4;
-    padding: 14px 20px; }
+    padding: 14px 20px;
+    display: table; }
     .messenger-box .inner-box .name {
       font-size: 16px;
       padding-bottom: 10px; }
@@ -522,10 +522,11 @@ canvas {
       border-style: solid;
       border-width: 9px;
       border-color: transparent #f1f2f7 transparent transparent; }
-  .messenger-box .msg-sent .avatar {
+  .messenger-box .msg-sent .avatar, .messenger-box .msg-sent .msg-box {
     float: right; }
   .messenger-box .msg-sent .msg-box {
-    margin-right: 85px; }
+    margin-left: 0;
+    margin-right: 20px; }
   .messenger-box .msg-sent .inner-box:after {
     left: inherit;
     right: -18px;
@@ -614,7 +615,7 @@ aside.left-panel {
       width: 100%; }
       .navbar .navbar-nav li.active .menu-icon, .navbar .navbar-nav li:hover .toggle_nav_button:before,
       .navbar .navbar-nav li .toggle_nav_button.nav-open:before {
-        color: #03a9f3; }
+        /*color: #03a9f3;*/color: #28A745; }
       .navbar .navbar-nav li .dropdown-toggle:after {
         display: none; }
       .navbar .navbar-nav li > a {
@@ -627,7 +628,7 @@ aside.left-panel {
         position: relative;
         width: 100%; }
         .navbar .navbar-nav li > a:hover, .navbar .navbar-nav li > a:hover .menu-icon {
-          color: #03a9f3; }
+          /*color: #03a9f3;*/ color: #28A745; }
         .navbar .navbar-nav li > a .menu-icon {
           color: #607d8b;
           float: left;
@@ -694,7 +695,8 @@ aside.left-panel {
           top: 20px;
           right: -5px; }
         .navbar .navbar-nav li.menu-item-has-children.show a:hover:before {
-          border-color: transparent #03a9f3 #03a9f3 transparent; }
+          /*border-color: transparent #03a9f3 #03a9f3 transparent;*/
+          border-color: transparent #28A745 #28A745 transparent; }
         .navbar .navbar-nav li.menu-item-has-children.show .sub-menu {
           max-height: 1000px;
           opacity: 1;
@@ -703,7 +705,7 @@ aside.left-panel {
 .navbar .navbar-nav > .active > a,
 .navbar .navbar-nav > .active > a:focus,
 .navbar .navbar-nav > .active > a:hover {
-  color: #03a9f3; }
+  /*color: #03a9f3;*/ color: #28A745;}
 
 .navbar-nav li span.count {
   background: #a9d86e;
@@ -2502,4 +2504,15 @@ footer.site-footer {
     left: inherit !important;
     right: 20px !important; }
 
+
+.prueba{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   min-height: 70vh;
+}
 /*# sourceMappingURL=style.css.map */
+
+.tableButton{
+  margin: 5px;
+}

@@ -14,7 +14,7 @@ from apps.libros.models import Autor,Libro
 from apps.libros.forms import AutorForm,LibroForm
 
 class InicioAutor(LoginYSuperStaffMixin,ValidarPermisosMixin,TemplateView):
-	template_name = 'libro/autor/listar_autor.html'
+	template_name = 'libros/autor/listar_autor.html'
 	permission_required = ('libro.view_autor', 'libro.add_autor',
 							'libro.delete_autor','libro.change_autor')
 
@@ -82,7 +82,7 @@ class ActualizarAutor(LoginYSuperStaffMixin,ValidarPermisosMixin,UpdateView):
 class CrearAutor(LoginYSuperStaffMixin,ValidarPermisosMixin,CreateView):
 	model = Autor
 	form_class = AutorForm
-	template_name = 'libro/autor/crear_autor.hmtl'
+	template_name = 'libros/autor/crear_autor.html'
 	permission_required = ('libro.view_autor', 'libro.add_autor',
 							'libro.delete_autor', 'libro.change_autor')
 
@@ -130,14 +130,14 @@ class EliminarAutor(LoginYSuperStaffMixin,ValidarPermisosMixin,DeleteView):
 		return redirect('libro:listar_autor')
 
 class InicioLibro(LoginYSuperStaffMixin,ValidarPermisosMixin,TemplateView):
-	template_name = 'libro/libro/listar_libro.html'
+	template_name = 'libros/libro/listar_libro.html'
 	permission_required = ('libro.view_libro','libro.add_libro',
 							'libro.delete_libro','libro_change_libro')
 
 class CrearLibro(LoginYSuperStaffMixin,ValidarPermisosMixin,CreateView):
 	model = Libro
 	form_class = LibroForm
-	template_name = 'libro/libro/crear_libro.html'
+	template_name = 'libros/libro/crear_libro.html'
 	permission_required = ('libro.view_libro','libro.add_libro',
 							'libro.delete_libro','libro_change_libro')
 
@@ -157,7 +157,7 @@ class CrearLibro(LoginYSuperStaffMixin,ValidarPermisosMixin,CreateView):
 				response = JsonResponse({'mensaje':mensaje,'error':error})
 				response.status_code = 400
 				return response
-			return redirect('libro:inicio_libro')
+		return redirect('libro:inicio_libro')
 
 class ListadoLibros(LoginYSuperStaffMixin,ValidarPermisosMixin,ListView):
 	model = Libro
@@ -217,3 +217,12 @@ class EliminarLibro(LoginYSuperStaffMixin,ValidarPermisosMixin,DeleteView):
 			response.status_code = 201
 			return response
 		return redirect('libro:listar_libro')
+
+class ListadoLibrosDisponibles(LoginMixin,ListView):
+    model = Libro
+    paginate_by = 6
+    template_name = 'libros/libros_disponibles.html'
+
+    def get_queryset(self):
+        queryset = self.model.objects.filter(estado = True,cantidad__gte = 1)
+        return queryset

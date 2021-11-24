@@ -31,3 +31,4 @@ text-unidecode
 toml
 xlrd
 xlwt
+django-crispy-form

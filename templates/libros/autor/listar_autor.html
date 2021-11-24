@@ -1,4 +1,4 @@
-{% extends "index.html" %}
+{% extends 'index.html' %}
 {% load static %}
 {% block title %}
 	BiblioVir | Listado de Autores
@@ -14,12 +14,12 @@
 				<strong class="card-title">Listado de Autores</strong>
 			</div>
 			<div class="col-md-4">
-				<button class="btn btn-primary" >REGISTRAR AUTOR</button>
+				<button type="button" class="btn btn-primary" onclick="abrir_modal_creacion('{% url 'libro:crear_autor' %}');">REGISTRAR AUTOR</button>
 			</div>	
 		</div>
+
 	</div>
 	<div class="table-stats order-table ov-h">
-	{% if object_list %}
 		<table id="tabla_autores" class="table">
 			<thead>
 				<tr>
@@ -28,26 +28,26 @@
 					<th>Apellidos</th>
 					<th>Nacionalidad</th>
 					<th>Descripcion</th>
-					<th>Opciones</th>
 				</tr>
 			</thead>
 			<tbody>
-				{% for autor in object_list %}
-					<tr>
-						<td>{{ autor.id }}</td>
-						<td>{{ autor.nombre }}</td>
-						<td>{{ autor.apellidos }}</td>
-						<td>{{ autor.nacionalidad }}</td>
-						<td>{{ autor.descripcion }}</td>
-						<td><a href="{%url 'libros:editar_autor' autor.id %}">Editar</a></td>
-						<td><a href="{%url 'libros:eliminar_autor' autor.id %}">Eliminar</a></td>
-					</tr>
-				{% endfor %}
 			</tbody>
 		</table>
-	    {% else %}
-	        <h1>No existen autores registrados</h1>
-	{% endif %}
 	</div>
 </div>
+<div class="modal fade" id="creacion" role="dialog">
+	
+</div>
+<div class="modal fade" id="edicion" role="dialog">
+	
+</div>
+<div class="modal fade" id="eliminacion" role="dialog">
+	
+</div>
+
 {% endblock body %}
+{% block extrajs %}
+<script src="//cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+<script src="{% static 'js/lib/data-table/dataTables.bootstrap.min.js' %}"></script>
+<script src="{% static 'js/libro/autor.js' %}"></script>
+{% endblock extrajs %}

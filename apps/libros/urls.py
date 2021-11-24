@@ -15,4 +15,5 @@ urlpatterns = [
 	path('editar_libros/<int:pk>',ActualizarLibro.as_view(),name='editar_libro'),
 	path('eliminar_libros/<int:pk>',EliminarLibro.as_view(),name='eliminar_libro'),
 	path('crear_autor_formset',FormsetAutor.as_view(),name='crear_autor_formset'),
+	path('listado-libros-disponibles/',ListadoLibrosDisponibles.as_view(), name = 'listado_libros_disponibles'),
 ]

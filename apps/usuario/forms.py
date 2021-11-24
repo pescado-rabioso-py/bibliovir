@@ -1,14 +1,25 @@
 from django import forms
 from django.contrib.auth.forms import AuthenticationForm
 from apps.usuario.models import Usuario
+from crispy_forms.helper import FormHelper
+from crispy_forms.layout import Layout,Fieldset,ButtonHolder,Submit
+from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+
 
 class FormularioLogin(AuthenticationForm):
 	def __init__(self,*args,**kwargs):
-		super(FormularioLogin,self).__init__(*args,**kwargs)
-		self.fields['username'].widget.attrs['class'] = 'form-control'
-		self.fields['username'].widget.attrs['placeholder'] = 'Nombre de Usuario'
-		self.fields['password'].widget.attrs['class'] = 'form-control'
-		self.fields['password'].widget.attrs['placeholder'] = 'Password'
+		super(FormularioLogin, self).__init__(*args,**kwargs)
+		self.fields["username"].label = ""
+		self.fields["password"].label = ""
+		self.helper = FormHelper()
+		self.helper.layout = Layout(
+			PrependedText('username','@',placeholder='Ingrese su Usuario'
+			),
+			PrependedText('password', '<i class="fa fa-key"></i>', placeholder="Ingrese su contraseña"),
+			Submit('sign_in', 'Acceder',
+                   css_class='btn btn-lg btn-success btn-block'),
+		) 
+	
 
 class FormularioUsuario(forms.ModelForm):
 	password1 = forms.CharField(label = 'Password',widget=forms.PasswordInput(

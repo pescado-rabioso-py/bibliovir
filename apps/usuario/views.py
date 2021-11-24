@@ -21,12 +21,12 @@ from apps.usuario.mixins import (
 from apps.libros.models import Libro
 # Create your views here.
 class Inicio(LoginRequiredMixin,TemplateView):
-	template = 'index.html'
+	template_name = 'index.html'
 	groups_required = ['Grupo1','Grupo2']
 
 	def get(self,request,*args,**kwargs):
 		print(Libro.objects.prefetch_related('autor_id').all().query)
-		print('----------------------------')
+		print("----------------------------")
 		libros = Libro.objects.prefetch_related('autor_id').all()
 		for libro in libros:
 			print(libro.autor_id.all().query)
@@ -54,7 +54,7 @@ class Login(FormView):
 
 def logoutUsuario(request):
 	logout(request)
-	return HttpResponse('/accounts/login')
+	return HttpResponseRedirect('/accounts/login')
 
 class InicioUsuarios(LoginYSuperStaffMixin,ValidarPermisosMixin,TemplateView):
 	template_name = 'usuarios/listar_usuario.html'

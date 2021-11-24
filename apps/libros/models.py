@@ -32,9 +32,13 @@ class Libro(models.Model):
 	id = models.AutoField(primary_key= True)
 	titulo = models.CharField('Titulo', max_length=255, blank=False, null=False)
 	fecha_publicacion = models.DateField('Fecha de publicacion', blank=False, null= False )
-	autor_id = models.ForeignKey(Autor, on_delete=models.CASCADE)
-	fecha_creacion = models.DateField('Fecha de creacion', auto_now=True, auto_now_add= False )
+	descripcion = models.TextField('Descripcion',null=True,blank=True)
+	cantidad = models.PositiveIntegerField('Cantidad o Stock',default = 1)
 	imagen = models.ImageField('Imagen', upload_to='libros/',max_length=255,null=True,blank=True)
+	autor= models.ManyToManyField(Autor)
+	fecha_creacion = models.DateField('Fecha de creacion', auto_now=True, auto_now_add= False )
+	estado = models.BooleanField(default=True,verbose_name='Estado')
+	
 
 	def natural_key(self):
 		return self.titulo

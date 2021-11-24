@@ -14,11 +14,22 @@
 - Correción error sobre modelo personalizado `auth`
 - Remoción de lógica y modelo de préstamo de libros
 
+**24/11/2021**
+
+- Corrección de modelo `LibroForm`
+- Vista de templates completos
+- Correción de sintaxis e identación
+- Implementación de `django-crispy-form` para maquetación de LoginForm
+- Lanzamiento de Release Candidate ***rc241121***
+
+
 ###### TODO
 - [x] Terminar app usuario
-- [ ] Finalizar templates de apps
+- [x] Finalizar templates de apps
 - [ ] Relevar datos importantes para el cliente y aplicarlos a la lógica
 - [ ] Obtener medios multimedia para el sitio
 - [ ] Corregir errores ortográficos
 - [ ] Adjuntar documentación sobre modelos, funciones y métodos
 - [ ] Depurar modelo de gestión de usuarios, roles y grupos
+- [ ] Remover código inflado
+- [ ] Evaluar cambiar AwesomeFonts por Boxicons

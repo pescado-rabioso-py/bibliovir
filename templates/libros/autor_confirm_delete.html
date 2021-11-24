@@ -1,0 +1,14 @@
+{% extends 'index.html' %}
+{% block titulo %}
+   BiblioVir | Confirmación de Eliminación
+{% endblock titulo %}
+
+{% block body %}
+
+<form method="POST">
+	{% csrf_token %}
+	<p><strong>¿Desea eliminar el registro {{ object }}?</strong></p>
+	<button type="submit" class="btn btn-danger">Confirmar</button>
+</form>
+
+{% endblock body %}
