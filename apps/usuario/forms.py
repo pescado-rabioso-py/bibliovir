@@ -1,9 +1,12 @@
 from django import forms
-from django.contrib.auth.forms import AuthenticationForm
-from apps.usuario.models import Usuario
+from django.contrib.auth.forms import AuthenticationForm,UserCreationForm, PasswordChangeForm
+from django.contrib.auth.models import User
+
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Layout,Fieldset,ButtonHolder,Submit
-from crispy_forms.bootstrap import AppendedText, PrependedText, FormActions
+from crispy_forms.layout import Layout, Submit
+from crispy_forms.bootstrap import PrependedText
+
+from apps.usuario.models import Usuario
 
 
 class FormularioLogin(AuthenticationForm):
@@ -16,64 +19,27 @@ class FormularioLogin(AuthenticationForm):
 			PrependedText('username','@',placeholder='Ingrese su Usuario'
 			),
 			PrependedText('password', '<i class="fa fa-key"></i>', placeholder="Ingrese su contraseña"),
+
 			Submit('sign_in', 'Acceder',
-                   css_class='btn btn-lg btn-success btn-block'),
-		) 
-	
+                   css_class='btn btn-lg btn-success btn-block')
+		)
 
-class FormularioUsuario(forms.ModelForm):
-	password1 = forms.CharField(label = 'Password',widget=forms.PasswordInput(
-		attrs={
-			'class':'form-control',
-			'placeholder':'Ingrese su password...',
-			'id':'password1',
-			'required':'required',
-		}
-	))
-
-	password2 = forms.CharField(label = 'Password de confirmacion',widget=forms.PasswordInput(
-		attrs={
-			'class':'form-control',
-			'placeholder':'Ingrese nuevamente su password...',
-			'id':'password2',
-			'required':'required',
-		}
-	))
+class FormularioUsuario(UserCreationForm):
+	email = forms.EmailField(widget=forms.EmailInput(attrs={'class':'form-control'}))
+	nombres = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control'}))
+	apellidos = forms.CharField(max_length=100,widget=forms.TextInput(attrs={'class':'form-control'}))
 
 	class Meta:
 		model = Usuario
-		fields = ('email','username','nombres','apellidos','rol')
-		widget = {
-			'email': forms.EmailInput(
-				attrs = {
-					'class': 'form-control',
-					'placeholder': 'Correo Electronico',
-				}
-			),
-			'nombres':forms.TextInput(
-				attrs={
-					'class':'form-control',
-					'placeholder':'Ingrese su nombre',
-				}
-			),
-			'apellidos':forms.TextInput(
-				attrs={
-					'class':'form-control',
-					'placeholder':'Ingrese sus apellidos',
-				}
-			),
-			'username':forms.TextInput(
-				attrs={
-					'class':'form-control',
-					'placeholder':'Ingrese su nombre de usuario',
-				}
-			),
-			'rol': forms.Select(
-				attrs={
-					'class':'form-control'
-				}
-			)
-		}
+		fields = ('username','nombres','apellidos','email','password1','password2')
+
+	def __init__(self,*args,**kwargs):
+		super(FormularioUsuario, self).__init__(*args,**kwargs)
+		
+		self.fields['username'].widget.attrs['class'] = 'form-control'
+		self.fields['password1'].widget.attrs['class'] = 'form-control'
+		self.fields['password2'].widget.attrs['class'] = 'form-control'
+
 
 	def clean_password2(self):
 		password1 = self.cleaned_data.get('password1')
@@ -90,7 +56,8 @@ class FormularioUsuario(forms.ModelForm):
 		return user
 
 
-class CambiarPasswordForm(forms.Form):
+class CambiarPasswordForm(PasswordChangeForm):
+	old_password = forms.CharField(widget=forms.PasswordInput(attrs={'class':'form-control','type':'password'}))
 	password1 = forms.CharField(label = 'Password',widget=forms.PasswordInput(
 		attrs = {
 			'class':'form-control',
@@ -108,6 +75,10 @@ class CambiarPasswordForm(forms.Form):
 			'required':'required',
 		}
 	))
+
+	class Meta:
+		model = User
+		fields = ('old_password','new_password1','new_password2')
 
 	def clean_password2(self):
 		password1 = self.cleaned_data.get('password1')

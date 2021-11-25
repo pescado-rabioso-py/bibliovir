@@ -23,7 +23,15 @@
 - Lanzamiento de Release Candidate ***rc241121***
 
 
+**25/11/2021**
+
+- `FormularioUsuario` migrado a la vista basada en clases `UserCreationForm`
+- Los usuarios ya son creados correctamente y pueden acceder al Front-End
+- **FormularioUsuario no permite usar mayúsculas al crear usuario ```AttributeError: 'RegistrarUsuario' object has no attribute 'model__name__'```**
+
 ###### TODO
+
+- [x] **La implementación del modelo UserManager no está creando correctamente usuarios (URGENTE)**
 - [x] Terminar app usuario
 - [x] Finalizar templates de apps
 - [ ] Relevar datos importantes para el cliente y aplicarlos a la lógica
@@ -33,3 +41,4 @@
 - [ ] Depurar modelo de gestión de usuarios, roles y grupos
 - [ ] Remover código inflado
 - [ ] Evaluar cambiar AwesomeFonts por Boxicons
+- [ ] Mover Lógica a Vistas Basadas en Clases

@@ -12,9 +12,7 @@ from django.http import HttpResponseRedirect, HttpResponse, JsonResponse
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView,TemplateView
 from apps.usuario.models import Usuario
-from apps.usuario.forms import (
-	FormularioLogin, FormularioUsuario, CambiarPasswordForm
-)
+from apps.usuario.forms import FormularioLogin, FormularioUsuario, CambiarPasswordForm
 from apps.usuario.mixins import (
 	LoginYSuperStaffMixin, ValidarPermisosMixin, LoginMixin
 )
@@ -131,7 +129,8 @@ class EditarUsuario(LoginYSuperStaffMixin,ValidarPermisosMixin,UpdateView):
 class EliminarUsuario(LoginYSuperStaffMixin,ValidarPermisosMixin,DeleteView):
 	model = Usuario
 	template_name = 'usuarios/eliminar_usuario.html'
-	permission_required = ('usuario.view_usuario','usuario.add_usuario','								usuario.delete_usuario','usuario.change_usuario')
+	permission_required = ('usuario.view_usuario','usuario.add_usuario',
+		'usuario.delete_usuario','usuario.change_usuario')
 
 	def delete(self,request,*args,**kwargs):
 		if request.is_ajax():

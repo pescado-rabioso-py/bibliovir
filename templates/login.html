@@ -38,11 +38,13 @@
 						    	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 						    		<span aria-hidden="true">&times;</span>
 						    	</button>
-						    	<strong>Advertencia: </strong> {{ form.get_invalid_login_error }}
+						    	
+									<h6 class="header-error"><strong>Advertencia: </strong>{{ form.get_invalid_login_error }}</h6>
+								
 						    </div>
 							{% endif %}
 							{% crispy form form.helper %}
-							<p class="text-mutted small text-right ">rc231121</p>
+							<p class="text-mutted small text-right ">rc241121</p>
 						</div>
 					</form>
 				</div>
